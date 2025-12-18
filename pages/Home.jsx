@@ -1,3 +1,4 @@
+import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import { fetchTasks } from "../api/taskApi";
 import TaskForm from "../components/TaskForm";
@@ -10,16 +11,19 @@ export default function Home() {
   });
 
   return (
-    <div className="mx-auto max-w-5xl px-4 py-8">
-      <div className="grid gap-6 md:grid-cols-3">
-        <TaskForm />
-        <div className="md:col-span-2">
-          {isLoading ? (
-            <p className="text-center text-gray-500">Loading...</p>
-          ) : (
-            <TaskList tasks={tasks} />
-          )}
-        </div>
+    <div className="grid gap-6 md:grid-cols-3">
+      {/* Form */}
+      <TaskForm />
+
+      {/* Table */}
+      <div className="md:col-span-2">
+        {isLoading ? (
+          <div className="rounded-lg border bg-white p-6 text-center">
+            Loading...
+          </div>
+        ) : (
+          <TaskList tasks={tasks} />
+        )}
       </div>
     </div>
   );
